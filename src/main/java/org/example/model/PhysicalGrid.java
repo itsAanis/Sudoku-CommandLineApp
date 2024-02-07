@@ -6,7 +6,8 @@ import static java.lang.System.*;
 @Component
 public class PhysicalGrid implements IGrid{
 
-    private int[][] grid;
+    public int[][] grid;
+    private int gridSize = 9;
     public PhysicalGrid(){
         this.grid = new int[][]{
                 { 8, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -28,6 +29,8 @@ public class PhysicalGrid implements IGrid{
     for (int[] row : this.grid) {
         for (int num : row) {
             str.append(num != 0 ? num : ".").append(" ");
+       //     if( (num < gridSize -1) && ((num+1) % gridSize == 0) )
+         //       str.append( "|" );
         }
         str.append("\n");
     }
