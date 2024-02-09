@@ -29,15 +29,13 @@ public class PhysicalGrid implements IGrid{
     for (int[] row : this.grid) {
         for (int num : row) {
             str.append(num != 0 ? num : ".").append(" ");
-       //     if( (num < gridSize -1) && ((num+1) % gridSize == 0) )
-         //       str.append( "|" );
         }
         str.append("\n");
     }
     return str.toString();
 }
 
-    public void test (String testing) {
-        out.println(testing);
-    }
+   public int[][] getGrid () {
+        return this.grid;
+   }
 }

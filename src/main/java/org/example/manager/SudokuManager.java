@@ -1,27 +1,35 @@
 package org.example.manager;
 
-import org.example.model.IGrid;
-import org.example.solver.ISolver;
+
+import org.example.service.IService;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.shell.standard.ShellComponent;
+import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
 
-@Component
+@ShellComponent
 public class SudokuManager {
-    private final IGrid grid;
-    private final ISolver solver;
+
+    private final IService service;
     @Autowired
-    public SudokuManager(IGrid grid ,ISolver solver) {
-        this.grid = grid;
-        this.solver = solver;
+    public SudokuManager(IService service) {
+        this.service = service;
     }
 
-   public void start () {
-        mytest();
-     String result = grid.toString();
-     System.out.println(result);
-   }
-
-    private void mytest () {
-        grid.test("heey");
+    @ShellMethod("Selects and prints a Sudoku grid.")
+    public String printGrid(@ShellOption(defaultValue = "Physical") String type) {
+        if ("Physical".equalsIgnoreCase(type)) {
+          return "\n" + service.start(type);
+        }
+        else {
+            return "Currently, only 'Physical' grid type is supported.";
+        }
     }
+
+    @ShellMethod("solves the Sudoku grid selected")
+    public String Solve() {
+    return "\n" + service.solve();
+    }
+
 }

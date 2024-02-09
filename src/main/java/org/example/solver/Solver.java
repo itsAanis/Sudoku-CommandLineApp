@@ -11,25 +11,34 @@ public class Solver implements ISolver {
 
     private final int gridSize = 9;
 
-    public Solver(IGrid grid) {
+    public Solver() {
 
     }
 
-    public void solve (int[][] grid) {
+    //recursive back tracking algorithm
+    public boolean solve (int[][] grid) {
        for (int row=0; row< gridSize; row++) {
            for (int column = 0; column < gridSize; column++) {
                if (grid[row][column] == 0){
+                   for (int attempt = 1; attempt <= gridSize; attempt++ ) {
+                       if (isPlacementValid(grid, row, column, attempt)){
+                           grid[row][column] = attempt;
 
+                           if(solve(grid)){
+                               return true;
+                           }
+                           else {
+                               grid[row][column]=0;
+                           }
+                       }
+                   }
+                   return false;
                }
            }
        }
-
+        return true;
     }
-
-   /* private find (int row , int grid) {
-
-    } */
-
+    //creates threads to check if its valid to place concurrently
     private boolean isPlacementValid(int[][] board, int row, int col, int num) {
             ExecutorService executor = null;
         try {
