@@ -12,7 +12,7 @@ Sudoku-CommandLineApp is a Java-based console application that leverages Spring 
 ## Running the Application
 Clone the Repository
 ```
-git clone https://github.com/yourusername/Sudoku-CommandLineApp.git
+git clone https://github.com/itsAanis/Sudoku-CommandLineApp.git
 cd Sudoku-CommandLineApp
 ```
 
